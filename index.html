@@ -1,280 +1,259 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Педагогический коллектив МГКЦТ</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            padding: 30px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-        }
-        
-        .header h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .header p {
-            color: #7f8c8d;
-            font-size: 1.1em;
-        }
-        
-        .info-card {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .info-card .total {
-            font-size: 2em;
-            font-weight: bold;
-        }
-        
-        .info-card .date {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        
-        .table-container {
-            overflow-x: auto;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-        
-        thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        th {
-            padding: 20px 15px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.1em;
-            border-right: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        th:last-child {
-            border-right: none;
-        }
-        
-        th i {
-            margin-right: 10px;
-        }
-        
-        tbody tr {
-            border-bottom: 1px solid #f1f1f1;
-            transition: all 0.3s ease;
-        }
-        
-        tbody tr:hover {
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        tbody tr:nth-child(even):hover {
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-        }
-        
-        td {
-            padding: 18px 15px;
-            color: #2c3e50;
-            font-size: 1em;
-            border-right: 1px solid #f1f1f1;
-        }
-        
-        td:first-child {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        td:last-child {
-            border-right: none;
-        }
-        
-        .post-badge {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 500;
-            text-align: center;
-            min-width: 150px;
-        }
-        
-        .post-high {
-            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
-            color: white;
-        }
-        
-        .post-medium {
-            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
-            color: white;
-        }
-        
-        .post-low {
-            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
-            color: white;
-        }
-        
-        .post-other {
-            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
-            color: white;
-        }
-        
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 2px solid #eee;
-            color: #7f8c8d;
-        }
-        
-        .source-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
-        }
-        
-        .source-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .source-link i {
-            margin-right: 8px;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            th, td {
-                padding: 12px 8px;
-                font-size: 0.9em;
-            }
-            
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .info-card {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Педагогический коллектив МГКЦТ</title>
+<!-- Font Awesome для иконок -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+<style>
+/* Общие стили */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color:#f0f4f8;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Заголовок */
+.header {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #4CAF50, #81C784);
+  border-radius: 10px;
+  color: white;
+}
+.header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+.header p {
+  font-size: 1.2em;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Инфоблок с числом и датой */
+.info-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.info-box:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+.stat {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+}
+.date {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #777;
+}
+.info-icon {
+  font-size: 3em;
+  color: #4CAF50;
+}
+
+/* Таблица */
+.table-section {
+  margin-top: 30px;
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 15px 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+thead {
+  background-color: #2196F3;
+  color: #fff;
+}
+th {
+  padding: 15px;
+  font-size: 1.1em;
+  font-weight: 600;
+  text-align: left;
+}
+th i {
+  margin-right: 8px;
+}
+tbody {
+  background: #fff;
+}
+tr {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: background-color 0.3s, transform 0.3s;
+}
+tr:hover {
+  background-color: #e3f2fd;
+  transform: translateY(-2px);
+}
+td {
+  padding: 15px;
+  font-size: 1em;
+  vertical-align: middle;
+}
+td:first-child {
+  font-weight: 600;
+  width: 50px;
+}
+td i {
+  margin-right: 10px;
+  color: #2196F3;
+}
+
+/* Статусы */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: white;
+}
+.high {
+  background-color: #4CAF50;
+}
+.medium {
+  background-color: #FF9800;
+}
+.low {
+  background-color: #F44336;
+}
+.other {
+  background-color: #9C27B0;
+}
+
+/* Подвал */
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+}
+.source-link {
+  display: inline-block;
+  margin-top: 15px;
+  background-color: #2196F3;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.source-link:hover {
+  background-color: #0b7dda;
+  transform: translateY(-2px);
+}
+
+/* Стиль для кнопки перехода на исходный файл */
+.btn-source {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 24px;
+  background-color: #009688;
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.btn-source:hover {
+  background-color: #00796b;
+  transform: translateY(-2px);
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-chalkboard-teacher"></i> Педагогический коллектив МГКЦТ</h1>
-            <p>Информация о преподавателях Минского государственного колледжа цифровых технологий</p>
-        </div>
-        
-        <div class="info-card">
-            <div>
-                <div class="total">3 преподавателей</div>
-                <div class="date">Данные обновлены: 04.12.2025 15:16:27</div>
-            </div>
-            <div>
-                <i class="fas fa-university" style="font-size: 2.5em; opacity: 0.8;"></i>
-            </div>
-        </div>
-        
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th><i class="fas fa-hashtag"></i> №</th>
-                        <th><i class="fas fa-user-graduate"></i> ФИО преподавателя</th>
-                        <th><i class="fas fa-briefcase"></i> Должность и категория</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><i class="fas fa-user" style="color: #667eea; margin-right: 8px;"></i>Амброжи Наталья Михайловна</td>
-                        <td><span class="post-badge post-high">Преподаватель высшей категории</span></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><i class="fas fa-user" style="color: #667eea; margin-right: 8px;"></i>Бровка Дионисий Сергеевич</td>
-                        <td><span class="post-badge post-low">Преподаватель без категории</span></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><i class="fas fa-user" style="color: #667eea; margin-right: 8px;"></i>Касперович Светлана Александровна</td>
-                        <td><span class="post-badge post-high">Преподаватель высшей категории</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="footer">
-            <p>Данные собраны с официального сайта МГКЦТ</p>
-            <a href="https://mgkct.minskedu.gov.by/о-колледже/педагогический-коллектив" class="source-link" target="_blank">
-                <i class="fas fa-external-link-alt"></i> Перейти на исходный сайт
-            </a>
-            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.7;">
-                <i class="fas fa-code"></i> Сгенерировано программой-парсером | 2025
-            </p>
-        </div>
+
+<div class="container">
+
+  <!-- Заголовок -->
+  <div class="header">
+    <h1><i class="fas fa-chalkboard-teacher"></i> Педагогический коллектив МГКЦТ</h1>
+    <p>Информация о преподавателях Минского государственного колледжа цифровых технологий</p>
+  </div>
+
+  <!-- Инфо-блок -->
+  <div class="info-box">
+    <div>
+      <div class="stat">3 преподавателей</div>
+      <div class="date">Обновлено: 04.12.2025 15:16:27</div>
     </div>
+    <div class="info-icon">
+      <i class="fas fa-university"></i>
+    </div>
+  </div>
+
+  <!-- Таблица -->
+  <div class="table-section">
+    <table>
+      <thead>
+        <tr>
+          <th><i class="fas fa-hashtag"></i> №</th>
+          <th><i class="fas fa-user"></i> ФИО преподавателя</th>
+          <th><i class="fas fa-briefcase"></i> Должность и категория</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><i class="fas fa-user"></i>Амброжи Наталья Михайловна</td>
+          <td><span class="badge high">Преподаватель высшей категории</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><i class="fas fa-user"></i>Бровка Дионисий Сергеевич</td>
+          <td><span class="badge low">Преподаватель без категории</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><i class="fas fa-user"></i>Касперович Светлана Александровна</td>
+          <td><span class="badge high">Преподаватель высшей категории</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Кнопка перехода на исходный файл -->
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="original-file.html" target="_blank" class="btn-source">
+      <i class="fas fa-file-alt"></i> Перейти к исходному файлу
+    </a>
+  </div>
+
+  <!-- Подвал -->
+  <div class="footer">
+    <p>Данные взяты с официального сайта МГКЦТ</p>
+    <a href="https://mgkct.minskedu.gov.by/о-колледже/педагогический-коллектив" target="_blank" class="source-link">
+      <i class="fas fa-external-link-alt"></i> Перейти на сайт
+    </a>
+    <p style="margin-top: 15px;"> <i class="fas fa-code"></i> Сгенерировано программой‑парсером | 2025</p>
+  </div>
+
+</div>
+
 </body>
 </html>
